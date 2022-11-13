@@ -102,8 +102,9 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
+.env
+.venvDescribe 
 env/
 venv/
 ENV/
@@ -127,3 +128,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+credentials.ini
