@@ -120,7 +120,9 @@ def get_label_text(label, count):
     # correct plural names
     plural = count > 1
     ends_with_s = label.endswith('s')
-    if plural and ends_with_s:
+    if label in ['skis', 'scissors']:
+        label = label
+    elif plural and ends_with_s:
         label += 'es'
     elif plural:
         label += 's'
