@@ -32,7 +32,9 @@ def start_api():
         access_token,
         access_token_secret)
 
-    api = tweepy.API(auth)
+    api = tweepy.API(
+        auth,
+        wait_on_rate_limit=True)
 
     return api
 
@@ -198,6 +200,14 @@ def send_tweet(api, status_id, image, text):
         file=file)
 
 
+def send_error(api, status_id, screen_name):
+
+    text = 'Sorry @{}, I could not find the photo.'.format(screen_name)
+
+    api.update_status(
+        text,
+        in_reply_to_status_id=status_id)
+
 def proc_mention(api, mention):
     '''Process one mention.
 
@@ -208,10 +218,13 @@ def proc_mention(api, mention):
     mention: tweepy.models.status
         The tweepy status for the mention.
     '''
-
     screen_name = mention.author.screen_name
-    media_url = mention.entities['media'][0]['media_url']
     status_id = mention.id
+    try:
+        media_url = mention.entities['media'][0]['media_url']
+    except:
+        send_error(api, status_id, screen_name)
+        return
 
     image, boxes = get_prediction(media_url)
 
@@ -247,11 +260,11 @@ def proc_all_mentions(api):
 
 
 if __name__ == '__main__':
-    
-    api = start_api()
 
+    api = start_api()
+    
     while True:
 
         proc_all_mentions(api)
 
-        time.sleep(30)
+        time.sleep(60)
