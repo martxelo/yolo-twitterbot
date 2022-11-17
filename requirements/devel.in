@@ -1,0 +1,5 @@
+# pre-commit
+pre-commit
+
+# requirements tooling
+pip-tools
