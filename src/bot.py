@@ -1,9 +1,9 @@
 from io import BytesIO
 
+import tweepy
+
 from src import config
 from src.prediction import get_prediction
-
-import tweepy
 
 
 def start_api():

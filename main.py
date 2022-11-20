@@ -1,6 +1,6 @@
 import time
-from src import bot
 
+from src import bot
 
 if __name__ == '__main__':
 
