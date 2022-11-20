@@ -80,7 +80,7 @@ def get_prediction(media_url):
     file = {'image': BytesIO(requests.get(media_url).content)}
 
     url = 'http://localhost:3674/predict'
-    response = requests.post(url, files=file)
+    response = requests.get(url, files=file)
 
     # decode image
     data = base64.b64decode(response.json()['data'])
