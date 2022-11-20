@@ -4,7 +4,7 @@ from src import bot
 
 if __name__ == '__main__':
 
-    # start the tweepe api
+    # start the tweepy api
     api = bot.start_api()
 
     while True:
