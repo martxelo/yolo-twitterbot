@@ -73,7 +73,7 @@ def proc_mention(api, mention):
     try:
         media_url = mention.entities['media'][0]['media_url']
     except Exception:
-        send_error(api, status_id, screen_name)
+        send_image_not_found(api, status_id, screen_name)
         return
 
     image, boxes = get_prediction(media_url)
@@ -83,7 +83,7 @@ def proc_mention(api, mention):
     send_tweet(api, status_id, image, text)
 
 
-def send_error(api, status_id, screen_name):
+def send_image_not_found(api, status_id, screen_name):
 
     text = f'Sorry @{screen_name}, I could not find the photo.'
 
