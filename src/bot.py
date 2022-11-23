@@ -136,7 +136,7 @@ def generate_text(boxes, screen_name):
         return f'Sorry @{screen_name}, I have found nothing. Try with other image.'
 
     labels = [box[0] for box in boxes]
-    labels_set = set(labels)
+    labels_set = sorted(list(set(labels)))
 
     text = 'This image contains:'
     for label in labels_set:
