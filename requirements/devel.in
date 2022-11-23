@@ -5,3 +5,6 @@ pre-commit
 
 # requirements tooling
 pip-tools
+
+# pytest
+pytest
